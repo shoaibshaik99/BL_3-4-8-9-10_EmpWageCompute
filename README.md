@@ -1,2 +1,2 @@
 # EmpWageCompute
-BridgeLabz - Employee wage computation program.
+BridgeLabz - Employee wage computation assignment
