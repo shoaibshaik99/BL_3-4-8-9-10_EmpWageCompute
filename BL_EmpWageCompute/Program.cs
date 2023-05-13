@@ -4,17 +4,23 @@
     {
         static void Main(string[] args)
         {
-            const int IS_PRESENT = 1;
+            const int FULL_TIME = 1;
+            const int PART_TIME = 2;
             const int EMP_RATE_PER_HR = 20;
             int empHrs = 0;
             int empWage = 0;
             Console.WriteLine("Welcome to Employee Wage Computation Portal");
             Random random = new Random();
-            int randomInput = random.Next(0, 2);//0 or 1
-            if (IS_PRESENT == randomInput)
+            int randomInput = random.Next(0, 3);//0 or 1 or 3
+            if (FULL_TIME == randomInput)
             {
                 empHrs = 8;
-                Console.WriteLine("Employee is Present");
+                Console.WriteLine("FullTime Employee is Present");
+            }
+            else if (PART_TIME == randomInput)
+            {
+                empHrs = 4;
+                Console.WriteLine("PartTime Employee is Present");
             }
             else
             {
