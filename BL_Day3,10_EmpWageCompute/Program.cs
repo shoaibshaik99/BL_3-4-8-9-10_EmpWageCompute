@@ -4,8 +4,10 @@
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to Employee Wage Computation Portal");
             CalcEmpWage CalculateWage = new CalcEmpWage();
-            CalculateWage.CalcWage();         
+            CalculateWage.CalcWage("TataSteel", 30, 20, 140);
+            CalculateWage.CalcWage("Sony", 40, 22, 160);
         }
     }
 }
