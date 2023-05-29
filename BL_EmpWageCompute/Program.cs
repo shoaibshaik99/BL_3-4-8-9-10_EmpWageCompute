@@ -5,32 +5,68 @@ namespace BL_EmployeeWageComputation
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Portal");
-            CalcEmpWage CalculateWage = new CalcEmpWage();
-            CalculateWage.CalcWage("TataSteel", 30, 20, 140);
-            CalculateWage.CalcWage("Sony", 40, 22, 160);
+
+            CalcEmpWage company = new CalcEmpWage();
+            company.AddCompanyDetails("TataSteel", 30, 20, 140);
+            company.AddCompanyDetails("Sony", 40, 22, 160);
+            company.AddCompanyDetails("ITC", 33, 26, 170);
+            company.IterateOverCompanies();
+        }
+    }
+
+    internal class CalcEmpWage
+    {
+        public const int FULL_TIME = 1;
+        public const int PART_TIME = 2;
+
+        private int noOfCompany = 0;
+        CompanyDetails[] companiesArray;// new CompanyDetails[5];
+
+        public CalcEmpWage()
+        {
+            companiesArray = new CompanyDetails[5];
         }
 
-        internal class CalcEmpWage
+        public void AddCompanyDetails(string company, int empRatePerHour, int noOfWorkingDays, int maxHrsPerMonth)
         {
-            public const int FULL_TIME = 1;
-            public const int PART_TIME = 2;
+            CompanyDetails comp = new CompanyDetails(company, empRatePerHour, noOfWorkingDays, maxHrsPerMonth);
+            companiesArray[noOfCompany] = comp;
+            noOfCompany++;
+        }
 
-            public void CalcWage(string company, int empRatePerHour, int noOfWorkingDays, int maxHrsPerMonth)
+        public void IterateOverCompanies()
+        {
+            for (int i = 0; i < companiesArray.Length; i++)
             {
-                int empHrs = 0;
-                int totalWage = 0;
-                int day = 1;
-                int totalHrs = 0;
-                //Console.WriteLine("Welcome to Employee Wage Computation Portal");
-                Random random = new Random();
-                while (day <= noOfWorkingDays && totalHrs < maxHrsPerMonth)
+                if (companiesArray[i] != null)
                 {
-                    int randomInput = random.Next(0, 3);//0 or 1 or 2
-                    switch (randomInput)
-                    {
-                        case FULL_TIME:
-                            empHrs = 8;
-                            //Console.WriteLine("Full time employee is present");
+                    int totalWage = CalcWage(companiesArray[i]);
+                    companiesArray[i].SetTotalEmpWage(totalWage);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+
+        public static int CalcWage(CompanyDetails obj)
+        {
+            int empHrs = 0;
+            int totalWage = 0;
+            int day = 1;
+            int totalHrs = 0;
+            //Console.WriteLine("Welcome to Employee Wage Computation Portal");
+            Random random = new Random();
+            while (day <= obj.noOfWorkingDays /*obj.noOfWorkigDays*/&& totalHrs < obj.maxHrsPerMonth/*obj.maxHrsPerMonth*/)
+            {
+                int randomInput = random.Next(0, 3);//0 or 1 or 2
+                switch (randomInput)
+                {
+                    case FULL_TIME:
+                        empHrs = 8;
+                        //Console.WriteLine("Full time employee is present");
 
                         break;
                     case PART_TIME:
