@@ -19,24 +19,23 @@ namespace BL_EmployeeWageComputation
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
 
-        private int noOfCompany = 0;
-        CompanyDetails[] companiesArray;// new CompanyDetails[5];
+        //private int noOfCompany = 0;
+        List<CompanyDetails> companiesArray;// new CompanyDetails[5];
 
         public CalcEmpWage()
         {
-            companiesArray = new CompanyDetails[5];
+            companiesArray = new List<CompanyDetails>();
         }
 
         public void AddCompanyDetails(string company, int empRatePerHour, int noOfWorkingDays, int maxHrsPerMonth)
         {
             CompanyDetails comp = new CompanyDetails(company, empRatePerHour, noOfWorkingDays, maxHrsPerMonth);
-            companiesArray[noOfCompany] = comp;
-            noOfCompany++;
+            companiesArray.Add(comp);
         }
 
         public void IterateOverCompanies()
         {
-            for (int i = 0; i < companiesArray.Length; i++)
+            for (int i = 0; i < companiesArray.Count(); i++)
             {
                 if (companiesArray[i] != null)
                 {
@@ -48,6 +47,7 @@ namespace BL_EmployeeWageComputation
                     break;
                 }
             }
+            //can use foreach loop to reduce the code
         }
 
 
