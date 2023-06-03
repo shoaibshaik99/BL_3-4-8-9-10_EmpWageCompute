@@ -6,7 +6,7 @@ namespace BL_EmployeeWageComputation
         {
             Console.WriteLine("Welcome to Employee Wage Computation Portal");
 
-            EmpWageBuilder company = new EmpWageBuilder();
+            CalcEmpWage company = new CalcEmpWage();
             company.AddCompanyDetails("TataSteel", 30, 20, 140);
             company.AddCompanyDetails("Sony", 40, 22, 160);
             company.AddCompanyDetails("ITC", 33, 26, 170);
@@ -14,39 +14,31 @@ namespace BL_EmployeeWageComputation
         }
     }
 
-    internal class EmpWageBuilder
+    internal class CalcEmpWage
     {
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
 
-        private int indexOfCompany = 0;
-        CompanyDetails[] companiesArray;// new CompanyDetails[5];
+        //private int noOfCompany = 0;
+        List<CompanyDetails> listOfCompanies;// new CompanyDetails[5];
 
-        public EmpWageBuilder()
+        public CalcEmpWage()
         {
-            companiesArray = new CompanyDetails[5];
+            listOfCompanies = new List<CompanyDetails>();
         }
 
         public void AddCompanyDetails(string company, int empRatePerHour, int noOfWorkingDays, int maxHrsPerMonth)
         {
             CompanyDetails comp = new CompanyDetails(company, empRatePerHour, noOfWorkingDays, maxHrsPerMonth);
-            companiesArray[indexOfCompany] = comp;
-            indexOfCompany++;
+            listOfCompanies.Add(comp);
         }
 
         public void IterateOverCompanies()
         {
-            for (int i = 0; i < companiesArray.Length; i++)
+            foreach (CompanyDetails company in listOfCompanies)
             {
-                if (companiesArray[i] != null)
-                {
-                    int totalWage = CalcWage(companiesArray[i]);
-                    companiesArray[i].SetTotalEmpWage(totalWage);
-                }
-                else
-                {
-                    break;
-                }
+                int totalWage = CalcWage(company);
+                company.SetTotalEmpWage(totalWage);
             }
         }
 

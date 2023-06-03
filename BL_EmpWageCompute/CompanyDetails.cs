@@ -15,7 +15,7 @@
 
         public void SetTotalEmpWage(int totalEmpWage)
         {
-            totalWage = totalEmpWage;
+            this.totalWage = totalEmpWage;
         }
     }
 }
