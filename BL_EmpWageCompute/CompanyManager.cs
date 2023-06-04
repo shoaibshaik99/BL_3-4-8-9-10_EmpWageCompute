@@ -14,5 +14,18 @@
             CompanyDetails comp = new CompanyDetails(company, empRatePerHour, noOfWorkingDays, maxHrsPerMonth);
             listOfCompanies.Add(comp);
         }
+
+        public int GetTotalWageByCompany(string companyName)
+        {
+            foreach (CompanyDetails company in listOfCompanies)
+            {
+                if (company.company == companyName)
+                {
+                    return company.totalWage;
+                }
+            }
+            return -1; // Return -1 if the company is not found
+        }
+
     }
 }

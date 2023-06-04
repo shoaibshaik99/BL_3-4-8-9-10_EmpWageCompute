@@ -13,10 +13,13 @@ namespace BL_EmployeeWageComputation
 
             foreach (CompanyDetails company in companyManager.listOfCompanies)
             {
-                int totalWage = WageCalculator.CalculateWageForCompany(company);
-                company.SetTotalEmpWage(totalWage);
-                company.PrintDailyWages();
+                company.SetTotalEmpWage(WageCalculator.CalculateWageForCompany(company));
+                //company.PrintDailyWages();
             }
+
+            // Example usage of GetTotalWageByCompany method
+            int totalWage = companyManager.GetTotalWageByCompany("TataSteel");
+            Console.WriteLine("Total wage for TataSteel: {0}", totalWage);
         }
     }
 
@@ -50,7 +53,7 @@ namespace BL_EmployeeWageComputation
                 totalHrs += empHrs;
                 day++;
             }
-            Console.WriteLine("Compamy: {0}, Total Wage: {1}", obj.company, totalWage);
+            //Console.WriteLine("Compamy: {0}, Total Wage: {1}", obj.company, totalWage);
             return totalWage;
         }
     }
